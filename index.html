@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Основы Vue</title>
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+      [v-cloack] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+
+  <div class="container" id="app" v-cloak>
+    <div class="card">
+      <h1>План по изучению Vue.js</h1>
+
+      <div class="steps">
+        <div class="steps-content">
+          {{ steps[currentStep].text }}
+        </div>
+        <ul class="steps-list">
+          <div v-for="(step, idx) in steps">
+            <li
+                class="steps-item"
+                v-on:click="setActive(idx)"
+                :class="{
+                  ['active']: idx === currentStep,
+                  ['done']: idx < currentStep
+                }"
+            >
+              <span>{{ idx + 1 }}</span>&nbsp {{ step.title }}
+            </li>
+          </div>
+
+        </ul>
+        <div v-if="!isFormReset">
+          <button class="btn" :disabled="isDisableButtonBack" v-on:click="prev">Назад</button>
+          <button class="btn primary" v-on:click="nextOfFinish">{{ isLastStep ? 'Завершить' : 'Вперед' }}</button>
+        </div>
+        <div v-else>
+          <button class="btn primary" v-on:click="reset">Начать заново</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="vue.js"></script>
+  </body>
+</html>
