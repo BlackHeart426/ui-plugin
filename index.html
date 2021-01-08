@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Основы Vue</title>
     <link rel="stylesheet" href="theme.css" />
-    <style>
-      [v-cloack] {
-        display: none;
-      }
-    </style>
   </head>
   <body>
 
@@ -19,7 +14,7 @@
 
       <div class="steps">
         <div class="steps-content">
-          {{ steps[currentStep].text }}
+          {{ currentStep.text }}
         </div>
         <ul class="steps-list">
           <div v-for="(step, idx) in steps">
@@ -27,8 +22,8 @@
                 class="steps-item"
                 v-on:click="setActive(idx)"
                 :class="{
-                  ['active']: idx === currentStep,
-                  ['done']: idx < currentStep
+                  ['active']: idx === activeIndex,
+                  ['done']: idx < activeIndex
                 }"
             >
               <span>{{ idx + 1 }}</span>&nbsp {{ step.title }}

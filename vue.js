@@ -22,7 +22,10 @@ const App = {
      */
     prev() {
       // убавляем шаг
-      this.activeIndex = --this.activeIndex;
+      if (this.activeIndex !== 0)
+      {
+        --this.activeIndex;
+      }
     },
 
     /**
@@ -47,7 +50,7 @@ const App = {
         return
       }
       // прибавляем шаг
-      this.activeIndex = ++this.activeIndex;
+      ++this.activeIndex;
 
     },
 
@@ -67,7 +70,7 @@ const App = {
      *  текущий выбранный шаг
      */
     currentStep() {
-      return this.activeIndex
+      return this.steps[this.activeIndex]
     },
 
     /**
